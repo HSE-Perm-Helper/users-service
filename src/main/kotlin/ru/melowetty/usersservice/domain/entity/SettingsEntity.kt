@@ -8,6 +8,8 @@ import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.OneToOne
 import jakarta.persistence.Table
+import org.hibernate.annotations.OnDelete
+import org.hibernate.annotations.OnDeleteAction
 
 @Entity
 @Table(name = "settings")
@@ -19,6 +21,7 @@ open class SettingsEntity {
 
     @OneToOne
     @JoinColumn(name = "owner_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     open lateinit var owner: UserEntity
 
     @Column(name = "user_group", nullable = false)

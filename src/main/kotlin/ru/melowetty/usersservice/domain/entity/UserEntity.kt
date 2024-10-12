@@ -24,9 +24,6 @@ open class UserEntity {
     @Column(name = "id", nullable = false)
     open var id: UUID? = null
 
-    @Column(name = "telegram_id", nullable = false)
-    open var telegramId: Long = 0L
-
     @Embedded
     open lateinit var telegramInfo: UserTelegramInfoEntity
 
