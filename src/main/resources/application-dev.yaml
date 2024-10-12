@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/users_service
+    username: root
+    password: root
+eureka:
+  client:
+    enabled: false

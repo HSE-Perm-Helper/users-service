@@ -1,0 +1,149 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1728766352224-1
+      author: denismalinin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 50
+            sequenceName: settings_seq
+            startValue: 1
+  - changeSet:
+      id: 1728766352224-2
+      author: denismalinin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_settings
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_group
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_sub_group
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: true
+                  name: is_enabled_new_schedule_notification
+                  type: BOOLEAN
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: true
+                  name: is_enabled_changed_schedule_notification
+                  type: BOOLEAN
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: false
+                  name: is_enabled_coming_lessons_notifications
+                  type: BOOLEAN
+            tableName: settings
+  - changeSet:
+      id: 1728766352224-3
+      author: denismalinin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_users
+                  name: id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: telegram_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: current_settings_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: main_settings_id
+                  type: BIGINT
+              - column:
+                  name: creation_date
+                  type: DATETIME
+            tableName: users
+  - changeSet:
+      id: 1728766352224-4
+      author: denismalinin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: user_entity_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: available_settings_id
+                  type: BIGINT
+            tableName: users_available_settings
+  - changeSet:
+      id: 1728766352224-5
+      author: denismalinin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: current_settings_id
+            baseTableName: users
+            constraintName: FK_USERS_ON_CURRENT_SETTINGS
+            referencedColumnNames: id
+            referencedTableName: settings
+  - changeSet:
+      id: 1728766352224-6
+      author: denismalinin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: main_settings_id
+            baseTableName: users
+            constraintName: FK_USERS_ON_MAIN_SETTINGS
+            referencedColumnNames: id
+            referencedTableName: settings
+  - changeSet:
+      id: 1728766352224-7
+      author: denismalinin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: available_settings_id
+            baseTableName: users_available_settings
+            constraintName: fk_useavaset_on_settings_entity
+            referencedColumnNames: id
+            referencedTableName: settings
+  - changeSet:
+      id: 1728766352224-8
+      author: denismalinin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_entity_id
+            baseTableName: users_available_settings
+            constraintName: fk_useavaset_on_user_entity
+            referencedColumnNames: id
+            referencedTableName: users
+
