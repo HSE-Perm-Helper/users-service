@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1728774644570-1
+      author: denismalinin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: DATETIME
+            columnName: creation_date
+            tableName: users
+            validate: true
+  - changeSet:
+      id: 1728774644570-2
+      author: denismalinin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: UUID
+            columnName: owner_id
+            tableName: settings
+            validate: true
+

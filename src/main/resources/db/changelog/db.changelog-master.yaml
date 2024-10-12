@@ -1,5 +1,5 @@
 databaseChangeLog:
-  - include:
+  - includeAll:
+      path: /2024/10
       relativeToChangelogFile: true
-      file: /2024/10/13-01-changelog.yaml
 

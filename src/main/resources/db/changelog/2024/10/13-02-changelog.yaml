@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1728773789916-1
+      author: denismalinin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: owner_id
+                  type: UUID
+            tableName: settings
+  - changeSet:
+      id: 1728773789916-2
+      author: denismalinin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: owner_id
+            constraintName: uc_settings_owner
+            tableName: settings
+  - changeSet:
+      id: 1728773789916-3
+      author: denismalinin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: owner_id
+            baseTableName: settings
+            constraintName: FK_SETTINGS_ON_OWNER
+            referencedColumnNames: id
+            referencedTableName: users
+

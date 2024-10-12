@@ -5,6 +5,8 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.OneToOne
 import jakarta.persistence.Table
 
 @Entity
@@ -14,6 +16,10 @@ open class SettingsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     open var id: Long? = null
+
+    @OneToOne
+    @JoinColumn(name = "owner_id", nullable = false)
+    open lateinit var owner: UserEntity
 
     @Column(name = "user_group", nullable = false)
     open lateinit var group: String

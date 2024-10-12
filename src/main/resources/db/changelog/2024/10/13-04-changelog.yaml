@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1728774644890-1
+      author: denismalinin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: true
+                  name: telegram_username
+                  type: VARCHAR(64)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: telegram_first_name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: true
+                  name: telegram_last_name
+                  type: VARCHAR(255)
+            tableName: users
